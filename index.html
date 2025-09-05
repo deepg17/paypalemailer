@@ -12,57 +12,63 @@
       padding: 0;
     }
     .container {
-      width: 600px;
-      margin: 20px auto;
+      width: 90%;
+      max-width: 600px;
+      margin: 15px auto;
       background-color: #fff;
       border: 1px solid #ccc;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 15px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
     }
     .header {
       border-bottom: 2px solid #0070ba;
-      padding-bottom: 10px;
+      padding-bottom: 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
     .header h1 {
       color: #0070ba;
       margin: 0;
-      font-size: 24px;
+      font-size: 22px;
     }
     .header .details {
-      font-size: 14px;
+      font-size: 13px;
       color: #333;
+      text-align: right;
+ទ
     }
     .billed-to {
       border: 1px solid #ccc;
-      padding: 10px;
-      margin: 10px 0;
+      padding: 8px;
+      margin: 8px 0;
       background-color: #f9f9f9;
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
     }
     .billed-to p {
-      margin: 5px 0;
+      margin: 4px 0;
       color: #333;
     }
     .amount-charged {
       font-weight: bold;
       color: #0070ba;
+      text-align: right;
     }
     .message {
-      margin: 20px 0;
-      line-height: 1.5;
+      margin: 15px 0;
+      line-height: 1.4;
     }
     .table {
       width: 100%;
       border-collapse: collapse;
-      margin: 10px 0;
+      margin: 8px 0;
     }
     .table th, .table td {
       border: 1px solid #ddd;
-      padding: 8px;
+      padding: 6px;
       text-align: left;
     }
     .table th {
@@ -71,29 +77,113 @@
     .warning {
       background-color: #ffebee;
       border: 1px solid #ffcccc;
-      border-left: 6px solid #ff0000;
+      border-left: 5px solid #ff0000;
       color: #ff0000;
-      padding: 10px;
-      margin: 10px 0;
+      padding: 8px;
+      margin: 8px 0;
       font-weight: bold;
     }
-    .warning a{
-        text-decoration: none;
-        color: #ff0000;
-        
+    .warning a {
+      text-decoration: none;
+      color: #ff0000;
     }
     .footer {
       text-align: center;
       color: #666;
       font-style: italic;
-      margin-top: 20px;
+      margin-top: 15px;
+    }
+
+    /* Responsive Design for Mobile */
+    @media screen and (max-width: 600px) {
+      .container {
+        width: 95%;
+        padding: 10px;
+      }
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 6px;
+      }
+      .header h1 {
+        font-size: 18px;
+      }
+      .header .details {
+        font-size: 10px;
+        text-align: left;
+        margin-top: 8px;
+      }
+      .billed-to {
+        flex-direction: column;
+        padding: 6px;
+        margin: 6px 0;
+      }
+      .billed-to p {
+        margin: 3px 0;
+        font-size: 12px;
+      }
+      .amount-charged {
+        text-align: left;
+        margin-top: 8px;
+        font-size: 12px;
+      }
+      .message {
+        margin: 10px 0;
+        font-size: 12px;
+      }
+      .message p {
+        margin: 5px 0;
+      }
+      .purchase-summary h3 {
+        font-size: 16px;
+      }
+      .table {
+        font-size: 11px;
+        margin: 6px 0;
+      }
+      .table th, .table td {
+        padding: 5px;
+      }
+      /* Stack table for small screens */
+      .table thead {
+        display: none;
+      }
+      .table tr {
+        display: block;
+        margin-bottom: 8px;
+      }
+      .table td {
+        display: block;
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+        padding-right: 5px;
+      }
+      .table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 5px;
+        width: 45%;
+        padding-right: 5px;
+        font-weight: bold;
+        text-align: left;
+      }
+      .warning {
+        font-size: 11px;
+        padding: 6px;
+        margin: 6px 0;
+      }
+      .footer {
+        font-size: 10px;
+        margin-top: 10px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <h1>PayPal Invoice</h1>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/2560px-PayPal.svg.png"width="100px;">
       <div class="details">
         <p><b>Date:</b> <span id="dynamicDate"></span></p>
         <p><b>Invoice No:</b> $invoice_no</p>
@@ -118,17 +208,17 @@
     <div class="purchase-summary">
       <h3>Purchase Summary</h3>
       <table class="table">
-        <tr><b>
+        <tr>
           <th>Product Name</th>
           <th>Product ID</th>
           <th>Product Code</th>
-          <th>Order ID</th></b>
+          <th>Order ID</th>
         </tr>
         <tr>
-          <td>Norton 360 LifeLock</td>
-          <td>$TUR36HE</td>
-          <td>$76E4T6Y239987RWQETY</td>
-          <td>#5679367</td>
+          <td data-label="Product Name">Norton 360 LifeLock</td>
+          <td data-label="Product ID">$TUR36HE</td>
+          <td data-label="Product Code">$76E4T6Y239987RWQETY</td>
+          <td data-label="Order ID">#5679367</td>
         </tr>
       </table>
     </div>
