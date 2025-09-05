@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PayPal Invoice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 600px;
+      margin: 20px auto;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .header {
+      border-bottom: 2px solid #0070ba;
+      padding-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header h1 {
+      color: #0070ba;
+      margin: 0;
+      font-size: 24px;
+    }
+    .header .details {
+      font-size: 14px;
+      color: #333;
+    }
+    .billed-to {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: space-between;
+    }
+    .billed-to p {
+      margin: 5px 0;
+      color: #333;
+    }
+    .amount-charged {
+      font-weight: bold;
+      color: #0070ba;
+    }
+    .message {
+      margin: 20px 0;
+      line-height: 1.5;
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+    }
+    .table th, .table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    .table th {
+      background-color: #f2f2f2;
+    }
+    .warning {
+      background-color: #ffebee;
+      border: 1px solid #ffcccc;
+      border-left: 6px solid #ff0000;
+      color: #ff0000;
+      padding: 10px;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+    .warning a{
+        text-decoration: none;
+        color: #ff0000;
+        
+    }
+    .footer {
+      text-align: center;
+      color: #666;
+      font-style: italic;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>PayPal Invoice</h1>
+      <div class="details">
+        <p><b>Date:</b> <span id="dynamicDate"></span></p>
+        <p><b>Invoice No:</b> $invoice_no</p>
+      </div>
+    </div>
+    <div class="billed-to">
+      <div>
+        <p><b>Billed To:</b></p>
+        <p>Customer ID: $Invoice_no</p>
+        <p>Payment Mode: PayPal Account</p>
+        <p>Renewal Date: <span id="dynamicRenewalDate"></span></p>
+      </div>
+      <div class="amount-charged">
+        <p><b>Amount Charged:</b></p>
+        <p style="color: #0070ba;"><b>$3$charge.99</b></p>
+      </div>
+    </div>
+    <div class="message">
+      <p>Dear sir/madam, Semail</p>
+      <p>Your subscription to <b>Norton 360 Deluxe </b>will expire today. The subscription will auto-renew as per your plan. Please review the purchase summary below.</p>
+    </div>
+    <div class="purchase-summary">
+      <h3>Purchase Summary</h3>
+      <table class="table">
+        <tr><b>
+          <th>Product Name</th>
+          <th>Product ID</th>
+          <th>Product Code</th>
+          <th>Order ID</th></b>
+        </tr>
+        <tr>
+          <td>Norton 360 LifeLock</td>
+          <td>$numbe18</td>
+          <td>$pdduct_no</td>
+          <td>$minvoice_no</td>
+        </tr>
+      </table>
+    </div>
+    <div class="warning">
+      If you did not authorise this charge, you have 24 hours to cancel. Contact our customer service for an immediate refund: <a href="tel:+1-808-857-5090">+1-808-857-5090</a>
+    </div>
+    <div class="footer">
+      <p>Please do not reply to this email. This mailbox is not monitored.</p>
+      <p>Thanks & Regards,</p>
+      <p>Norton Service Renewal Dept</p>
+    </div>
+  </div>
+
+  <script>
+    // Function to update dynamic date
+    function updateDate() {
+      const now = new Date();
+      const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+      const formattedDate = now.toLocaleDateString('en-US', options);
+      document.getElementById('dynamicDate').textContent = formattedDate;
+      document.getElementById('dynamicRenewalDate').textContent = formattedDate;
+    }
+
+    // Update date on page load
+    window.onload = updateDate;
+  </script>
+</body>
+</html>
